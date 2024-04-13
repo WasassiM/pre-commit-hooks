@@ -35,22 +35,6 @@ def detect_gcp_credentials_in_file(file_path):
 
     return credentials
 
-def scan_directory(directory):
-    """
-    Scan a directory and its subdirectories for Python files and check for potential GCP credentials.
-
-    Args:
-    - directory (str): The path to the directory to scan.
-    """
-    for root, dirs, files in os.walk(directory):
-        for file_name in files:
-            file_path = os.path.join(root, file_name)
-            gcp_credentials = detect_gcp_credentials_in_file(file_path)
-            if gcp_credentials:
-                print(f"🔴 Potential GCP credentials found in: {file_path}")
-                print("Credentials:")
-                for credential in gcp_credentials:
-                    print(credential)
 
 def main():
     file_paths = sys.stdin.read().strip().split('\n')
